@@ -9,9 +9,9 @@ def test_add_contact(app):
     app.session.logout()
 
 
-def test_delete_contact(app):
+def test_modify_first_contact(app):
     app.session.login( username="admin", password="secret")
-    app.contact.delete_first_contact()
+    app.contact.modify_first_contact()
     app.session.logout()
 
 
