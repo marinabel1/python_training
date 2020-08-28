@@ -11,7 +11,7 @@ def test_add_contact(app):
 
 def test_modify_first_contact(app):
     app.session.login( username="admin", password="secret")
-    app.contact.modify_first_contact()
+    app.contact.modify_first_contact(Contact(company=u"ООО Тест", mobile="+700000000", work="87210000000"))
     app.session.logout()
 
 
