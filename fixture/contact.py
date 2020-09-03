@@ -8,6 +8,7 @@ class ContactHelper:
 
     def add_new_contact(self, contact):
         wd = self.app.wd
+        self.app.open_home_page()
         wd.find_element_by_xpath("//*[@id='nav']/ul/li[2]/a").click()
         self.filling_fields_contact("firstname", contact.firstname)
         self.filling_fields_contact("middlename", contact.middlename)
@@ -51,6 +52,11 @@ class ContactHelper:
         self.filling_fields_contact("mobile", contact.mobile)
         self.filling_fields_contact("work", contact.work)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+
+    def count(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        return len(wd.find_elements_by_name("selected[]"))
 
 
 
