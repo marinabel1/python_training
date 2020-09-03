@@ -31,12 +31,21 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
+        self.app.open_home_page()
         wd.find_element_by_name('selected[]').click()
+        wd.find_element_by_xpath('//input[@value="Delete"]').click()
+        wd.switch_to_alert().accept()
+
+    def delete_all_contact(self):
+        wd = self.app.wd
+        self.app.open_home_page()
+        wd.find_element_by_id('MassCB').click()
         wd.find_element_by_xpath('//input[@value="Delete"]').click()
         wd.switch_to_alert().accept()
 
     def modify_first_contact(self, contact):
         wd = self.app.wd
+        self.app.open_home_page()
         wd.find_element_by_xpath('//img[@title="Edit"]').click()
         self.filling_fields_contact("company", contact.company)
         self.filling_fields_contact("mobile", contact.mobile)
@@ -44,10 +53,5 @@ class ContactHelper:
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
 
 
-    def delete_all_contact(self):
-        wd = self.app.wd
-        wd.find_element_by_id('MassCB').click()
-        wd.find_element_by_xpath('//input[@value="Delete"]').click()
-        wd.switch_to_alert().accept()
 
 
