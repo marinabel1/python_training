@@ -7,7 +7,6 @@ class Application:
 
     def __init__(self):
         self.wd = webdriver.Chrome("/Users/marinabelousova/chromedriver/chromedriver")
-        self.wd.implicitly_wait(10)
         self.session = SessionHelper(self)
         self.group = GroupHelper(self)
         self.contact = ContactHelper(self)
@@ -17,11 +16,13 @@ class Application:
             self.wd.current_url
             return True
         except:
-            False
+            return False
 
     def open_home_page(self):
         wd = self.wd
-        wd.get("http://localhost:8080/addressbook/index.php")
+        if not (wd.current_url.endswith("/index.php") and len(wd.find_elements_by_name("MainForm")) > 0):
+            wd.get("http://localhost:8080/addressbook/index.php")
+
 
     def destroy(self):
         self.wd.quit()
